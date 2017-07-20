@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="sime_dbModelStoreContainer" CdmEntityContainer="sime_dbEntities1">
+    <EntitySetMapping Name="categorias">
+      <EntityTypeMapping TypeName="sime_dbModel.categoria">
+        <MappingFragment StoreEntitySet="categoria">
+          <ScalarProperty Name="fechaIngreso" ColumnName="fechaIngreso" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="categoriaID" ColumnName="categoriaID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="equipoes">
+      <EntityTypeMapping TypeName="sime_dbModel.equipo">
+        <MappingFragment StoreEntitySet="equipo">
+          <ScalarProperty Name="id_subcategoria" ColumnName="id_subcategoria" />
+          <ScalarProperty Name="id_categoria" ColumnName="id_categoria" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="fechaIngreso" ColumnName="fechaIngreso" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="codigo" ColumnName="codigo" />
+          <ScalarProperty Name="equipoID" ColumnName="equipoID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="subcategorias">
+      <EntityTypeMapping TypeName="sime_dbModel.subcategoria">
+        <MappingFragment StoreEntitySet="subcategoria">
+          <ScalarProperty Name="fechaIngreso" ColumnName="fechaIngreso" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="categoriaID" ColumnName="categoriaID" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="subcategoriaID" ColumnName="subcategoriaID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = "SIME";
+}
+
+<style>
+    table, tr, td, th {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin: 10px;
+    }
+</style>
+<body data-ng-app="APIModule" >
+    <h2>Equipo</h2>
+    <div id="tblSubs" ng-controller="EquipoController">
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Codigo</th>
+                <th>Descripcion (doble click para actualizar)</th>
+                <th>Fecha Ingreso</th>
+                <th>Activo</th>
+                <th>Borrar</th>
+            </tr>
+            <tbody data-ng-repeat="equipo in equipos">
+                <tr>
+                    <td>{{equipo.equipoID}}</td>
+                    <td>{{equipo.codigo}}</td>
+                    <td ng-blur="updEquipo(equipo,$event)" ng-dblclick="makeEditable($event)">{{equipo.descripcion}}</td>
+                    <td>{{equipo.fechaIngreso}}</td>
+                    <td>{{equipo.activo}}</td>
+                    <td> <input type="button" id="Delete" value="Borrar" data-ng-click="dltEquipo(equipo.equipoID)" /> </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="form-group">
+            <h3>Ingrese nuevo equipo</h3><br />
+            <label for="codigo">Codigo</label>
+            <input type="text" class="form-control" id="codigo" placeholder="Codigo" [required="string" ] data-ng-model="codigo" />
+            <label for="Descripcion">Descripcion</label>
+            <input type="text" class="form-control" id="descripcion" placeholder="Descripcion" [required="string" ] data-ng-model="descripcion" />
+            {{codigo}}<br/>
+            
+        </div>
+        <button type="button" class="btn btn-default" data-ng-click="saveEquipo();">Agregar</button>
+        {{resultado}}
+
+    </div>
+
+    
+
+
+</body>
+<script src="~/Scripts/angular.js"></script>
+<script src="~/Scripts/angular-route.js"></script>
+<script src="~/Scripts/APIScripts/modules/Module.js"></script>
+<script src="~/Scripts/APIScripts/services/EquipoService.js"></script>
+<script src="~/Scripts/APIScripts/controllers/EquipoController.js"></script> 

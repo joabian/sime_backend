@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="sime_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="categoria">
+    <Key>
+      <PropertyRef Name="categoriaID" />
+    </Key>
+    <Property Name="categoriaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar" MaxLength="50" />
+    <Property Name="activo" Type="bit" />
+    <Property Name="fechaIngreso" Type="datetime" />
+  </EntityType>
+  <EntityType Name="equipo">
+    <Key>
+      <PropertyRef Name="equipoID" />
+    </Key>
+    <Property Name="equipoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="codigo" Type="nvarchar" MaxLength="50" />
+    <Property Name="descripcion" Type="nvarchar" MaxLength="500" />
+    <Property Name="fechaIngreso" Type="datetime" />
+    <Property Name="id_categoria" Type="int" />
+    <Property Name="id_subcategoria" Type="int" />
+    <Property Name="activo" Type="bit" />
+  </EntityType>
+  <EntityType Name="subcategoria">
+    <Key>
+      <PropertyRef Name="subcategoriaID" />
+    </Key>
+    <Property Name="subcategoriaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar" MaxLength="50" />
+    <Property Name="categoriaID" Type="int" />
+    <Property Name="activo" Type="bit" />
+    <Property Name="fechaIngreso" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityContainer Name="sime_dbModelStoreContainer">
+    <EntitySet Name="categoria" EntityType="Self.categoria" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="equipo" EntityType="Self.equipo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="subcategoria" EntityType="Self.subcategoria" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

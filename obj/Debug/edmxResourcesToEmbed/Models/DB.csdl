@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="sime_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="sime_dbEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="categorias" EntityType="sime_dbModel.categoria" />
+    <EntitySet Name="equipoes" EntityType="sime_dbModel.equipo" />
+    <EntitySet Name="subcategorias" EntityType="sime_dbModel.subcategoria" />
+  </EntityContainer>
+  <EntityType Name="categoria">
+    <Key>
+      <PropertyRef Name="categoriaID" />
+    </Key>
+    <Property Name="categoriaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="activo" Type="Boolean" />
+    <Property Name="fechaIngreso" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="equipo">
+    <Key>
+      <PropertyRef Name="equipoID" />
+    </Key>
+    <Property Name="equipoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="codigo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="fechaIngreso" Type="DateTime" Precision="3" />
+    <Property Name="activo" Type="Boolean" />
+    <Property Name="id_categoria" Type="Int32" />
+    <Property Name="id_subcategoria" Type="Int32" />
+  </EntityType>
+  <EntityType Name="subcategoria">
+    <Key>
+      <PropertyRef Name="subcategoriaID" />
+    </Key>
+    <Property Name="subcategoriaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="categoriaID" Type="Int32" />
+    <Property Name="activo" Type="Boolean" />
+    <Property Name="fechaIngreso" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+</Schema>
