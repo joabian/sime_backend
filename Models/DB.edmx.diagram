@@ -6,8 +6,11 @@
     <edmx:Diagrams>
       <Diagram DiagramId="f2d15d34ddd044d9a00406f00a17f170" Name="Diagram1">
         <EntityTypeShape EntityType="sime_dbModel.categoria" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="sime_dbModel.equipo" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="sime_dbModel.equipo" Width="1.5" PointX="8.125" PointY="0.875" />
         <EntityTypeShape EntityType="sime_dbModel.subcategoria" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="sime_dbModel.stock" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="sime_dbModel.sucursale" Width="2" PointX="5.375" PointY="3.75" />
+        <EntityTypeShape EntityType="sime_dbModel.foto" Width="1.5" PointX="5.375" PointY="6.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

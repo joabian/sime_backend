@@ -28,5 +28,8 @@ namespace sime.Models
         public virtual DbSet<categoria> categorias { get; set; }
         public virtual DbSet<equipo> equipoes { get; set; }
         public virtual DbSet<subcategoria> subcategorias { get; set; }
+        public virtual DbSet<stock> stocks { get; set; }
+        public virtual DbSet<sucursale> sucursales { get; set; }
+        public virtual DbSet<foto> fotos { get; set; }
     }
 }

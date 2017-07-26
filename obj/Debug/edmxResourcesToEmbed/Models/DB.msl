@@ -14,12 +14,19 @@
     <EntitySetMapping Name="equipoes">
       <EntityTypeMapping TypeName="sime_dbModel.equipo">
         <MappingFragment StoreEntitySet="equipo">
+          <ScalarProperty Name="userCaptura" ColumnName="userCaptura" />
+          <ScalarProperty Name="userModifico" ColumnName="userModifico" />
+          <ScalarProperty Name="fechaModifico" ColumnName="fechaModifico" />
+          <ScalarProperty Name="numeroSerie" ColumnName="numeroSerie" />
+          <ScalarProperty Name="serializado" ColumnName="serializado" />
+          <ScalarProperty Name="modeloEquipo" ColumnName="modeloEquipo" />
+          <ScalarProperty Name="nombreEquipo" ColumnName="nombreEquipo" />
+          <ScalarProperty Name="marcaEquipo" ColumnName="marcaEquipo" />
           <ScalarProperty Name="id_subcategoria" ColumnName="id_subcategoria" />
           <ScalarProperty Name="id_categoria" ColumnName="id_categoria" />
           <ScalarProperty Name="activo" ColumnName="activo" />
           <ScalarProperty Name="fechaIngreso" ColumnName="fechaIngreso" />
           <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-          <ScalarProperty Name="codigo" ColumnName="codigo" />
           <ScalarProperty Name="equipoID" ColumnName="equipoID" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -32,6 +39,56 @@
           <ScalarProperty Name="categoriaID" ColumnName="categoriaID" />
           <ScalarProperty Name="nombre" ColumnName="nombre" />
           <ScalarProperty Name="subcategoriaID" ColumnName="subcategoriaID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="stocks">
+      <EntityTypeMapping TypeName="sime_dbModel.stock">
+        <MappingFragment StoreEntitySet="stock">
+          <ScalarProperty Name="qty" ColumnName="qty" />
+          <ScalarProperty Name="equipo_id" ColumnName="equipo_id" />
+          <ScalarProperty Name="sucursal_id" ColumnName="sucursal_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sucursales">
+      <EntityTypeMapping TypeName="sime_dbModel.sucursale">
+        <MappingFragment StoreEntitySet="sucursales">
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="fotos">
+      <EntityTypeMapping TypeName="sime_dbModel.foto">
+        <MappingFragment StoreEntitySet="fotos">
+          <ScalarProperty Name="fmodifico" ColumnName="fmodifico" />
+          <ScalarProperty Name="modifico" ColumnName="modifico" />
+          <ScalarProperty Name="creo" ColumnName="creo" />
+          <ScalarProperty Name="fcreo" ColumnName="fcreo" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="url" ColumnName="url" />
+          <ScalarProperty Name="id_equipo" ColumnName="id_equipo" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_equipos">
+      <EntityTypeMapping TypeName="sime_dbModel.vw_equipos">
+        <MappingFragment StoreEntitySet="vw_equipos">
+          <ScalarProperty Name="sucursal" ColumnName="sucursal" />
+          <ScalarProperty Name="SubcategoriaNombre" ColumnName="SubcategoriaNombre" />
+          <ScalarProperty Name="categoriaNombre" ColumnName="categoriaNombre" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="id_subcategoria" ColumnName="id_subcategoria" />
+          <ScalarProperty Name="id_categoria" ColumnName="id_categoria" />
+          <ScalarProperty Name="fechaIngreso" ColumnName="fechaIngreso" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="codigo" ColumnName="codigo" />
+          <ScalarProperty Name="equipoID" ColumnName="equipoID" />
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

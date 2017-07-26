@@ -15,11 +15,18 @@ namespace sime.Models
     public partial class equipo
     {
         public int equipoID { get; set; }
-        public string codigo { get; set; }
         public string descripcion { get; set; }
         public Nullable<System.DateTime> fechaIngreso { get; set; }
         public Nullable<bool> activo { get; set; }
         public Nullable<int> id_categoria { get; set; }
         public Nullable<int> id_subcategoria { get; set; }
+        public string marcaEquipo { get; set; }
+        public string nombreEquipo { get; set; }
+        public string modeloEquipo { get; set; }
+        public Nullable<bool> serializado { get; set; }
+        public string numeroSerie { get; set; }
+        public string fechaModifico { get; set; }
+        public string userModifico { get; set; }
+        public string userCaptura { get; set; }
     }
 }

@@ -4,6 +4,10 @@
     <EntitySet Name="categorias" EntityType="sime_dbModel.categoria" />
     <EntitySet Name="equipoes" EntityType="sime_dbModel.equipo" />
     <EntitySet Name="subcategorias" EntityType="sime_dbModel.subcategoria" />
+    <EntitySet Name="stocks" EntityType="sime_dbModel.stock" />
+    <EntitySet Name="sucursales" EntityType="sime_dbModel.sucursale" />
+    <EntitySet Name="fotos" EntityType="sime_dbModel.foto" />
+    <EntitySet Name="vw_equipos" EntityType="sime_dbModel.vw_equipos" />
   </EntityContainer>
   <EntityType Name="categoria">
     <Key>
@@ -19,12 +23,19 @@
       <PropertyRef Name="equipoID" />
     </Key>
     <Property Name="equipoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="codigo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="fechaIngreso" Type="DateTime" Precision="3" />
     <Property Name="activo" Type="Boolean" />
     <Property Name="id_categoria" Type="Int32" />
     <Property Name="id_subcategoria" Type="Int32" />
+    <Property Name="marcaEquipo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="nombreEquipo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="modeloEquipo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="serializado" Type="Boolean" />
+    <Property Name="numeroSerie" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fechaModifico" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="userModifico" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="userCaptura" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="subcategoria">
     <Key>
@@ -35,5 +46,52 @@
     <Property Name="categoriaID" Type="Int32" />
     <Property Name="activo" Type="Boolean" />
     <Property Name="fechaIngreso" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="stock">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sucursal_id" Type="Int32" Nullable="false" />
+    <Property Name="equipo_id" Type="Int32" Nullable="false" />
+    <Property Name="qty" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sucursale">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="activo" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="foto">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_equipo" Type="Int32" />
+    <Property Name="url" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="activo" Type="Boolean" />
+    <Property Name="fcreo" Type="DateTime" Precision="0" />
+    <Property Name="creo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="modifico" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fmodifico" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="vw_equipos">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="equipoID" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="equipoID" Type="Int32" Nullable="false" />
+    <Property Name="codigo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="fechaIngreso" Type="DateTime" Precision="3" />
+    <Property Name="id_categoria" Type="Int32" />
+    <Property Name="id_subcategoria" Type="Int32" />
+    <Property Name="activo" Type="Boolean" />
+    <Property Name="categoriaNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SubcategoriaNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="sucursal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
 </Schema>

@@ -34,3 +34,6 @@ C:\Users\212331260\Documents\proyectos pers\alcatraz\web\sime\sime\bin\Antlr3.Ru
 C:\Users\212331260\Documents\proyectos pers\alcatraz\web\sime\sime\obj\Debug\sime.csprojResolveAssemblyReference.cache
 C:\Users\212331260\Documents\proyectos pers\alcatraz\web\sime\sime\obj\Debug\sime.dll
 C:\Users\212331260\Documents\proyectos pers\alcatraz\web\sime\sime\obj\Debug\sime.pdb
+C:\Users\212331260\Documents\proyectos pers\alcatraz\web\sime\sime\bin\System.Web.Cors.dll
+C:\Users\212331260\Documents\proyectos pers\alcatraz\web\sime\sime\bin\System.Web.Http.Cors.dll
+C:\Users\212331260\Documents\proyectos pers\alcatraz\web\sime\sime\bin\System.Web.Http.Cors.xml

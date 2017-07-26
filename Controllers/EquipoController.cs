@@ -4,14 +4,19 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
+
 using System.Data.Entity;
-using sime.Models; 
+using sime.Models;
+using Newtonsoft.Json; 
 
 
 namespace sime.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class EquipoController : ApiController
     {
+        
         private sime_dbEntities1 myEntity = new sime_dbEntities1();
         
         // GET api/equipo
@@ -36,6 +41,7 @@ namespace sime.Controllers
         [ActionName("Add")]
         public void Post(equipo equipo)
         {
+            
             if (ModelState.IsValid)
             {
                 myEntity.equipoes.Add(equipo);

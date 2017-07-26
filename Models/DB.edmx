@@ -19,12 +19,41 @@
             <PropertyRef Name="equipoID" />
           </Key>
           <Property Name="equipoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="codigo" Type="nvarchar" MaxLength="50" />
           <Property Name="descripcion" Type="nvarchar" MaxLength="500" />
           <Property Name="fechaIngreso" Type="datetime" />
           <Property Name="id_categoria" Type="int" />
           <Property Name="id_subcategoria" Type="int" />
           <Property Name="activo" Type="bit" />
+          <Property Name="marcaEquipo" Type="nvarchar" MaxLength="50" />
+          <Property Name="nombreEquipo" Type="nvarchar" MaxLength="50" />
+          <Property Name="modeloEquipo" Type="nvarchar" MaxLength="50" />
+          <Property Name="serializado" Type="bit" />
+          <Property Name="numeroSerie" Type="nvarchar" MaxLength="50" />
+          <Property Name="fechaModifico" Type="nvarchar" MaxLength="50" />
+          <Property Name="userModifico" Type="nvarchar" MaxLength="50" />
+          <Property Name="userCaptura" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="fotos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_equipo" Type="int" />
+          <Property Name="url" Type="nvarchar" MaxLength="150" />
+          <Property Name="activo" Type="bit" />
+          <Property Name="fcreo" Type="date" />
+          <Property Name="creo" Type="varchar" MaxLength="50" />
+          <Property Name="modifico" Type="varchar" MaxLength="50" />
+          <Property Name="fmodifico" Type="date" />
+        </EntityType>
+        <EntityType Name="stock">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sucursal_id" Type="int" Nullable="false" />
+          <Property Name="equipo_id" Type="int" Nullable="false" />
+          <Property Name="qty" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="subcategoria">
           <Key>
@@ -36,10 +65,23 @@
           <Property Name="activo" Type="bit" />
           <Property Name="fechaIngreso" Type="nchar" MaxLength="10" />
         </EntityType>
+        <EntityType Name="sucursales">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="activo" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'sime_db.dbo.vw_equipos' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityContainer Name="sime_dbModelStoreContainer">
           <EntitySet Name="categoria" EntityType="Self.categoria" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="equipo" EntityType="Self.equipo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="fotos" EntityType="Self.fotos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="stock" EntityType="Self.stock" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="subcategoria" EntityType="Self.subcategoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sucursales" EntityType="Self.sucursales" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -49,6 +91,9 @@
           <EntitySet Name="categorias" EntityType="sime_dbModel.categoria" />
           <EntitySet Name="equipoes" EntityType="sime_dbModel.equipo" />
           <EntitySet Name="subcategorias" EntityType="sime_dbModel.subcategoria" />
+          <EntitySet Name="stocks" EntityType="sime_dbModel.stock" />
+          <EntitySet Name="sucursales" EntityType="sime_dbModel.sucursale" />
+          <EntitySet Name="fotos" EntityType="sime_dbModel.foto" />
         </EntityContainer>
         <EntityType Name="categoria">
           <Key>
@@ -64,12 +109,19 @@
             <PropertyRef Name="equipoID" />
           </Key>
           <Property Name="equipoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="codigo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="fechaIngreso" Type="DateTime" Precision="3" />
           <Property Name="activo" Type="Boolean" />
           <Property Name="id_categoria" Type="Int32" />
           <Property Name="id_subcategoria" Type="Int32" />
+          <Property Name="marcaEquipo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="nombreEquipo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="modeloEquipo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="serializado" Type="Boolean" />
+          <Property Name="numeroSerie" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fechaModifico" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="userModifico" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="userCaptura" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="subcategoria">
           <Key>
@@ -80,6 +132,36 @@
           <Property Name="categoriaID" Type="Int32" />
           <Property Name="activo" Type="Boolean" />
           <Property Name="fechaIngreso" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="stock">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sucursal_id" Type="Int32" Nullable="false" />
+          <Property Name="equipo_id" Type="Int32" Nullable="false" />
+          <Property Name="qty" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sucursale">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="activo" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="foto">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_equipo" Type="Int32" />
+          <Property Name="url" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="activo" Type="Boolean" />
+          <Property Name="fcreo" Type="DateTime" Precision="0" />
+          <Property Name="creo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="modifico" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fmodifico" Type="DateTime" Precision="0" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -100,12 +182,19 @@
           <EntitySetMapping Name="equipoes">
             <EntityTypeMapping TypeName="sime_dbModel.equipo">
               <MappingFragment StoreEntitySet="equipo">
+                <ScalarProperty Name="userCaptura" ColumnName="userCaptura" />
+                <ScalarProperty Name="userModifico" ColumnName="userModifico" />
+                <ScalarProperty Name="fechaModifico" ColumnName="fechaModifico" />
+                <ScalarProperty Name="numeroSerie" ColumnName="numeroSerie" />
+                <ScalarProperty Name="serializado" ColumnName="serializado" />
+                <ScalarProperty Name="modeloEquipo" ColumnName="modeloEquipo" />
+                <ScalarProperty Name="nombreEquipo" ColumnName="nombreEquipo" />
+                <ScalarProperty Name="marcaEquipo" ColumnName="marcaEquipo" />
                 <ScalarProperty Name="id_subcategoria" ColumnName="id_subcategoria" />
                 <ScalarProperty Name="id_categoria" ColumnName="id_categoria" />
                 <ScalarProperty Name="activo" ColumnName="activo" />
                 <ScalarProperty Name="fechaIngreso" ColumnName="fechaIngreso" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-                <ScalarProperty Name="codigo" ColumnName="codigo" />
                 <ScalarProperty Name="equipoID" ColumnName="equipoID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -118,6 +207,39 @@
                 <ScalarProperty Name="categoriaID" ColumnName="categoriaID" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="subcategoriaID" ColumnName="subcategoriaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="stocks">
+            <EntityTypeMapping TypeName="sime_dbModel.stock">
+              <MappingFragment StoreEntitySet="stock">
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="equipo_id" ColumnName="equipo_id" />
+                <ScalarProperty Name="sucursal_id" ColumnName="sucursal_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sucursales">
+            <EntityTypeMapping TypeName="sime_dbModel.sucursale">
+              <MappingFragment StoreEntitySet="sucursales">
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="fotos">
+            <EntityTypeMapping TypeName="sime_dbModel.foto">
+              <MappingFragment StoreEntitySet="fotos">
+                <ScalarProperty Name="fmodifico" ColumnName="fmodifico" />
+                <ScalarProperty Name="modifico" ColumnName="modifico" />
+                <ScalarProperty Name="creo" ColumnName="creo" />
+                <ScalarProperty Name="fcreo" ColumnName="fcreo" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="id_equipo" ColumnName="id_equipo" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
