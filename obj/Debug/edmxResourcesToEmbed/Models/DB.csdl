@@ -7,7 +7,6 @@
     <EntitySet Name="stocks" EntityType="sime_dbModel.stock" />
     <EntitySet Name="sucursales" EntityType="sime_dbModel.sucursale" />
     <EntitySet Name="fotos" EntityType="sime_dbModel.foto" />
-    <EntitySet Name="vw_equipos" EntityType="sime_dbModel.vw_equipos" />
   </EntityContainer>
   <EntityType Name="categoria">
     <Key>
@@ -76,22 +75,5 @@
     <Property Name="creo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="modifico" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="fmodifico" Type="DateTime" Precision="0" />
-  </EntityType>
-  <EntityType Name="vw_equipos">
-    <Key>
-      <PropertyRef Name="id" />
-      <PropertyRef Name="equipoID" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" />
-    <Property Name="equipoID" Type="Int32" Nullable="false" />
-    <Property Name="codigo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-    <Property Name="fechaIngreso" Type="DateTime" Precision="3" />
-    <Property Name="id_categoria" Type="Int32" />
-    <Property Name="id_subcategoria" Type="Int32" />
-    <Property Name="activo" Type="Boolean" />
-    <Property Name="categoriaNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="SubcategoriaNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="sucursal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
 </Schema>

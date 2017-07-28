@@ -75,22 +75,5 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="vw_equipos">
-      <EntityTypeMapping TypeName="sime_dbModel.vw_equipos">
-        <MappingFragment StoreEntitySet="vw_equipos">
-          <ScalarProperty Name="sucursal" ColumnName="sucursal" />
-          <ScalarProperty Name="SubcategoriaNombre" ColumnName="SubcategoriaNombre" />
-          <ScalarProperty Name="categoriaNombre" ColumnName="categoriaNombre" />
-          <ScalarProperty Name="activo" ColumnName="activo" />
-          <ScalarProperty Name="id_subcategoria" ColumnName="id_subcategoria" />
-          <ScalarProperty Name="id_categoria" ColumnName="id_categoria" />
-          <ScalarProperty Name="fechaIngreso" ColumnName="fechaIngreso" />
-          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-          <ScalarProperty Name="codigo" ColumnName="codigo" />
-          <ScalarProperty Name="equipoID" ColumnName="equipoID" />
-          <ScalarProperty Name="id" ColumnName="id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>
