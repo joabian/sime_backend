@@ -31,5 +31,11 @@ namespace sime.Models
         public virtual DbSet<stock> stocks { get; set; }
         public virtual DbSet<sucursale> sucursales { get; set; }
         public virtual DbSet<foto> fotos { get; set; }
+        public virtual DbSet<incidencia> incidencias { get; set; }
+        public virtual DbSet<solucione> soluciones { get; set; }
+        public virtual DbSet<comentario> comentarios { get; set; }
+        public virtual DbSet<vw_stock> vw_stock { get; set; }
+        public virtual DbSet<suspencione> suspenciones { get; set; }
+        public virtual DbSet<tareasCheck> tareasChecks { get; set; }
     }
 }

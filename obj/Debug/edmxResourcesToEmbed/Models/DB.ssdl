@@ -9,6 +9,15 @@
     <Property Name="activo" Type="bit" />
     <Property Name="fechaIngreso" Type="datetime" />
   </EntityType>
+  <EntityType Name="comentarios">
+    <Key>
+      <PropertyRef Name="comentarioID" />
+    </Key>
+    <Property Name="comentarioID" Type="int" Nullable="false" />
+    <Property Name="incidenciaID" Type="int" Nullable="false" />
+    <Property Name="comentario" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="usuario" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
   <EntityType Name="equipo">
     <Key>
       <PropertyRef Name="equipoID" />
@@ -41,6 +50,32 @@
     <Property Name="modifico" Type="varchar" MaxLength="50" />
     <Property Name="fmodifico" Type="date" />
   </EntityType>
+  <EntityType Name="incidencias">
+    <Key>
+      <PropertyRef Name="incidenciaID" />
+    </Key>
+    <Property Name="incidenciaID" Type="int" Nullable="false" />
+    <Property Name="usuario" Type="varchar" MaxLength="100" />
+    <Property Name="equipoID" Type="int" Nullable="false" />
+    <Property Name="serializado" Type="bit" />
+    <Property Name="numSerie" Type="varchar" MaxLength="50" />
+    <Property Name="descripcion" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="activa" Type="bit" />
+    <Property Name="fechaAperrtura" Type="date" />
+    <Property Name="fechaAtencion" Type="date" />
+    <Property Name="fechaClaususa" Type="date" />
+  </EntityType>
+  <EntityType Name="soluciones">
+    <Key>
+      <PropertyRef Name="solucionID" />
+    </Key>
+    <Property Name="solucionID" Type="int" Nullable="false" />
+    <Property Name="incidenciaID" Type="int" Nullable="false" />
+    <Property Name="solucion" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="funciono" Type="bit" Nullable="false" />
+    <Property Name="contador" Type="int" Nullable="false" />
+    <Property Name="usuario" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
   <EntityType Name="stock">
     <Key>
       <PropertyRef Name="id" />
@@ -70,12 +105,47 @@
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'sime_db.dbo.vw_equipos' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vw_equipos">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="equipoID" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="equipoID" Type="int" Nullable="false" />
+    <Property Name="codigo" Type="nvarchar" MaxLength="50" />
+    <Property Name="descripcion" Type="nvarchar" MaxLength="500" />
+    <Property Name="fechaIngreso" Type="datetime" />
+    <Property Name="id_categoria" Type="int" />
+    <Property Name="id_subcategoria" Type="int" />
+    <Property Name="activo" Type="bit" />
+    <Property Name="categoriaNombre" Type="nvarchar" MaxLength="50" />
+    <Property Name="SubcategoriaNombre" Type="nvarchar" MaxLength="50" />
+    <Property Name="sucursal" Type="nvarchar" MaxLength="50" />
+  </EntityType>
   <EntityContainer Name="sime_dbModelStoreContainer">
     <EntitySet Name="categoria" EntityType="Self.categoria" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="comentarios" EntityType="Self.comentarios" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="equipo" EntityType="Self.equipo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="fotos" EntityType="Self.fotos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="incidencias" EntityType="Self.incidencias" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="soluciones" EntityType="Self.soluciones" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="stock" EntityType="Self.stock" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="subcategoria" EntityType="Self.subcategoria" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sucursales" EntityType="Self.sucursales" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vw_equipos" EntityType="Self.vw_equipos" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vw_equipos].[id] AS [id], 
+    [vw_equipos].[equipoID] AS [equipoID], 
+    [vw_equipos].[codigo] AS [codigo], 
+    [vw_equipos].[descripcion] AS [descripcion], 
+    [vw_equipos].[fechaIngreso] AS [fechaIngreso], 
+    [vw_equipos].[id_categoria] AS [id_categoria], 
+    [vw_equipos].[id_subcategoria] AS [id_subcategoria], 
+    [vw_equipos].[activo] AS [activo], 
+    [vw_equipos].[categoriaNombre] AS [categoriaNombre], 
+    [vw_equipos].[SubcategoriaNombre] AS [SubcategoriaNombre], 
+    [vw_equipos].[sucursal] AS [sucursal]
+    FROM [dbo].[vw_equipos] AS [vw_equipos]</DefiningQuery>
+    </EntitySet>
   </EntityContainer>
 </Schema>

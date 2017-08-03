@@ -11,6 +11,12 @@
         <EntityTypeShape EntityType="sime_dbModel.stock" Width="1.5" PointX="5.375" PointY="0.75" />
         <EntityTypeShape EntityType="sime_dbModel.sucursale" Width="2" PointX="5.375" PointY="3.75" />
         <EntityTypeShape EntityType="sime_dbModel.foto" Width="1.5" PointX="5.375" PointY="6.75" />
+        <EntityTypeShape EntityType="sime_dbModel.incidencia" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="sime_dbModel.solucione" Width="1.5" PointX="2.75" PointY="6.75" />
+        <EntityTypeShape EntityType="sime_dbModel.comentario" Width="1.5" PointX="7.75" PointY="6.75" />
+        <EntityTypeShape EntityType="sime_dbModel.vw_stock" Width="1.5" PointX="7.375" PointY="9.75" />
+        <EntityTypeShape EntityType="sime_dbModel.suspencione" Width="1.5" PointX="9.375" PointY="9.75" />
+        <EntityTypeShape EntityType="sime_dbModel.tareasCheck" Width="1.5" PointX="10.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

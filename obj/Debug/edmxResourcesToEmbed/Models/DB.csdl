@@ -7,6 +7,10 @@
     <EntitySet Name="stocks" EntityType="sime_dbModel.stock" />
     <EntitySet Name="sucursales" EntityType="sime_dbModel.sucursale" />
     <EntitySet Name="fotos" EntityType="sime_dbModel.foto" />
+    <EntitySet Name="incidencias" EntityType="sime_dbModel.incidencia" />
+    <EntitySet Name="soluciones" EntityType="sime_dbModel.solucione" />
+    <EntitySet Name="comentarios" EntityType="sime_dbModel.comentario" />
+    <EntitySet Name="vw_equipos" EntityType="sime_dbModel.vw_equipos" />
   </EntityContainer>
   <EntityType Name="categoria">
     <Key>
@@ -75,5 +79,57 @@
     <Property Name="creo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="modifico" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="fmodifico" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="incidencia">
+    <Key>
+      <PropertyRef Name="incidenciaID" />
+    </Key>
+    <Property Name="incidenciaID" Type="Int32" Nullable="false" />
+    <Property Name="usuario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="equipoID" Type="Int32" Nullable="false" />
+    <Property Name="serializado" Type="Boolean" />
+    <Property Name="numSerie" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="descripcion" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="activa" Type="Boolean" />
+    <Property Name="fechaAperrtura" Type="DateTime" Precision="0" />
+    <Property Name="fechaAtencion" Type="DateTime" Precision="0" />
+    <Property Name="fechaClaususa" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="solucione">
+    <Key>
+      <PropertyRef Name="solucionID" />
+    </Key>
+    <Property Name="solucionID" Type="Int32" Nullable="false" />
+    <Property Name="incidenciaID" Type="Int32" Nullable="false" />
+    <Property Name="solucion" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="funciono" Type="Boolean" Nullable="false" />
+    <Property Name="contador" Type="Int32" Nullable="false" />
+    <Property Name="usuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="comentario">
+    <Key>
+      <PropertyRef Name="comentarioID" />
+    </Key>
+    <Property Name="comentarioID" Type="Int32" Nullable="false" />
+    <Property Name="incidenciaID" Type="Int32" Nullable="false" />
+    <Property Name="comentario1" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="usuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="vw_equipos">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="equipoID" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="equipoID" Type="Int32" Nullable="false" />
+    <Property Name="codigo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="fechaIngreso" Type="DateTime" Precision="3" />
+    <Property Name="id_categoria" Type="Int32" />
+    <Property Name="id_subcategoria" Type="Int32" />
+    <Property Name="activo" Type="Boolean" />
+    <Property Name="categoriaNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SubcategoriaNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="sucursal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
 </Schema>

@@ -75,5 +75,60 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="incidencias">
+      <EntityTypeMapping TypeName="sime_dbModel.incidencia">
+        <MappingFragment StoreEntitySet="incidencias">
+          <ScalarProperty Name="fechaClaususa" ColumnName="fechaClaususa" />
+          <ScalarProperty Name="fechaAtencion" ColumnName="fechaAtencion" />
+          <ScalarProperty Name="fechaAperrtura" ColumnName="fechaAperrtura" />
+          <ScalarProperty Name="activa" ColumnName="activa" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="numSerie" ColumnName="numSerie" />
+          <ScalarProperty Name="serializado" ColumnName="serializado" />
+          <ScalarProperty Name="equipoID" ColumnName="equipoID" />
+          <ScalarProperty Name="usuario" ColumnName="usuario" />
+          <ScalarProperty Name="incidenciaID" ColumnName="incidenciaID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="soluciones">
+      <EntityTypeMapping TypeName="sime_dbModel.solucione">
+        <MappingFragment StoreEntitySet="soluciones">
+          <ScalarProperty Name="usuario" ColumnName="usuario" />
+          <ScalarProperty Name="contador" ColumnName="contador" />
+          <ScalarProperty Name="funciono" ColumnName="funciono" />
+          <ScalarProperty Name="solucion" ColumnName="solucion" />
+          <ScalarProperty Name="incidenciaID" ColumnName="incidenciaID" />
+          <ScalarProperty Name="solucionID" ColumnName="solucionID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="comentarios">
+      <EntityTypeMapping TypeName="sime_dbModel.comentario">
+        <MappingFragment StoreEntitySet="comentarios">
+          <ScalarProperty Name="usuario" ColumnName="usuario" />
+          <ScalarProperty Name="comentario1" ColumnName="comentario" />
+          <ScalarProperty Name="incidenciaID" ColumnName="incidenciaID" />
+          <ScalarProperty Name="comentarioID" ColumnName="comentarioID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_equipos">
+      <EntityTypeMapping TypeName="sime_dbModel.vw_equipos">
+        <MappingFragment StoreEntitySet="vw_equipos">
+          <ScalarProperty Name="sucursal" ColumnName="sucursal" />
+          <ScalarProperty Name="SubcategoriaNombre" ColumnName="SubcategoriaNombre" />
+          <ScalarProperty Name="categoriaNombre" ColumnName="categoriaNombre" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="id_subcategoria" ColumnName="id_subcategoria" />
+          <ScalarProperty Name="id_categoria" ColumnName="id_categoria" />
+          <ScalarProperty Name="fechaIngreso" ColumnName="fechaIngreso" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="codigo" ColumnName="codigo" />
+          <ScalarProperty Name="equipoID" ColumnName="equipoID" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>
