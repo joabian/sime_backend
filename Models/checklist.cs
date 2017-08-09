@@ -12,17 +12,11 @@ namespace sime.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class incidencia
+    public partial class checklist
     {
-        public int incidenciaID { get; set; }
-        public string usuario { get; set; }
-        public int equipoID { get; set; }
-        public Nullable<bool> serializado { get; set; }
-        public string numSerie { get; set; }
+        public int checkID { get; set; }
+        public Nullable<int> idEquipo { get; set; }
         public string descripcion { get; set; }
-        public Nullable<System.DateTime> fechaAperrtura { get; set; }
-        public Nullable<System.DateTime> fechaAtencion { get; set; }
-        public Nullable<System.DateTime> fechaClaususa { get; set; }
-        public string estatus { get; set; }
+        public Nullable<int> periodoServicio { get; set; }
     }
 }

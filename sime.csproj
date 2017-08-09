@@ -153,21 +153,45 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\actividadesController.cs" />
+    <Compile Include="Controllers\areasController.cs" />
+    <Compile Include="Controllers\areaStockController.cs" />
     <Compile Include="Controllers\CategoriaController.cs" />
+    <Compile Include="Controllers\checkListsController.cs" />
     <Compile Include="Controllers\comentariosController.cs" />
     <Compile Include="Controllers\EquipoController.cs" />
+    <Compile Include="Controllers\fotosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\incidenciasController.cs" />
+    <Compile Include="Controllers\logsController.cs" />
+    <Compile Include="Controllers\requisicionesController.cs" />
+    <Compile Include="Controllers\rolesController.cs" />
+    <Compile Include="Controllers\serviciosController.cs" />
     <Compile Include="Controllers\solucionesController.cs" />
+    <Compile Include="Controllers\stockController.cs" />
     <Compile Include="Controllers\SubcategoriaController.cs" />
     <Compile Include="Controllers\sucursalesController.cs" />
     <Compile Include="Controllers\suspencionesController.cs" />
     <Compile Include="Controllers\tareasChecksController.cs" />
+    <Compile Include="Controllers\usuariosController.cs" />
+    <Compile Include="Controllers\vwAreasController.cs" />
     <Compile Include="Controllers\vwStockController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\actividade.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\area.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\areaStock.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\categoria.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\checklist.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\comentario.cs">
@@ -197,6 +221,18 @@
     <Compile Include="Models\incidencia.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\log.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\requisicione.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\role.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\servicio.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\solucione.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
@@ -213,6 +249,12 @@
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tareasCheck.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usuario.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_areas.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\vw_stock.cs">

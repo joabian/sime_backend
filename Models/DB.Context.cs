@@ -37,5 +37,15 @@ namespace sime.Models
         public virtual DbSet<vw_stock> vw_stock { get; set; }
         public virtual DbSet<suspencione> suspenciones { get; set; }
         public virtual DbSet<tareasCheck> tareasChecks { get; set; }
+        public virtual DbSet<actividade> actividades { get; set; }
+        public virtual DbSet<area> areas { get; set; }
+        public virtual DbSet<areaStock> areaStocks { get; set; }
+        public virtual DbSet<checklist> checklists { get; set; }
+        public virtual DbSet<log> logs { get; set; }
+        public virtual DbSet<requisicione> requisiciones { get; set; }
+        public virtual DbSet<role> roles { get; set; }
+        public virtual DbSet<usuario> usuarios { get; set; }
+        public virtual DbSet<vw_areas> vw_areas { get; set; }
+        public virtual DbSet<servicio> servicios { get; set; }
     }
 }

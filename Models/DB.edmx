@@ -5,6 +5,39 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="sime_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="actividades">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idChecklist" Type="int" />
+          <Property Name="idTarea" Type="int" />
+          <Property Name="activo" Type="bit" />
+        </EntityType>
+        <EntityType Name="areas">
+          <Key>
+            <PropertyRef Name="areaID" />
+          </Key>
+          <Property Name="areaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="250" />
+          <Property Name="idSucursal" Type="int" />
+          <Property Name="usuarioEncargado" Type="int" />
+          <Property Name="activo" Type="bit" />
+          <Property Name="fechaIngreso" Type="datetime" />
+        </EntityType>
+        <EntityType Name="areaStock">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idArea" Type="int" />
+          <Property Name="idEquipo" Type="int" />
+          <Property Name="cantidad" Type="int" />
+          <Property Name="idUsuario" Type="int" />
+          <Property Name="fechaUltimoServicio" Type="datetime" />
+          <Property Name="numeroSerie" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="categoria">
           <Key>
             <PropertyRef Name="categoriaID" />
@@ -13,6 +46,15 @@
           <Property Name="nombre" Type="nvarchar" MaxLength="50" />
           <Property Name="activo" Type="bit" />
           <Property Name="fechaIngreso" Type="datetime" />
+        </EntityType>
+        <EntityType Name="checklist">
+          <Key>
+            <PropertyRef Name="checkID" />
+          </Key>
+          <Property Name="checkID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idEquipo" Type="int" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="500" />
+          <Property Name="periodoServicio" Type="int" />
         </EntityType>
         <EntityType Name="comentarios">
           <Key>
@@ -65,11 +107,60 @@
           <Property Name="serializado" Type="bit" />
           <Property Name="numSerie" Type="varchar" MaxLength="50" />
           <Property Name="descripcion" Type="varchar" MaxLength="200" Nullable="false" />
-          <Property Name="activa" Type="bit" />
           <Property Name="fechaAperrtura" Type="date" />
           <Property Name="fechaAtencion" Type="date" />
           <Property Name="fechaClaususa" Type="date" />
-          <Property Name="abierta" Type="bit" />
+          <Property Name="estatus" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="log">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idRecord" Type="int" />
+          <Property Name="tabla" Type="nvarchar" MaxLength="50" />
+          <Property Name="usuario" Type="int" />
+          <Property Name="evento" Type="nvarchar" MaxLength="500" />
+          <Property Name="valOld" Type="nvarchar" MaxLength="50" />
+          <Property Name="valNew" Type="nvarchar" MaxLength="50" />
+          <Property Name="fecha" Type="datetime" />
+          <Property Name="pagina" Type="nvarchar" MaxLength="150" />
+          <Property Name="tipo" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="requisiciones">
+          <Key>
+            <PropertyRef Name="requisicionID" />
+          </Key>
+          <Property Name="requisicionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idRequisitor" Type="int" />
+          <Property Name="idResuelve" Type="int" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="500" />
+          <Property Name="respuesta" Type="nvarchar" MaxLength="500" />
+          <Property Name="estatus" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="roles">
+          <Key>
+            <PropertyRef Name="rolID" />
+          </Key>
+          <Property Name="rolID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rol" Type="nvarchar" MaxLength="50" />
+          <Property Name="creo" Type="int" />
+          <Property Name="fCreo" Type="datetime" />
+          <Property Name="modifico" Type="int" />
+          <Property Name="fModifico" Type="datetime" />
+          <Property Name="activo" Type="bit" />
+        </EntityType>
+        <EntityType Name="servicios">
+          <Key>
+            <PropertyRef Name="servicioID" />
+          </Key>
+          <Property Name="servicioID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idAreaStock" Type="int" />
+          <Property Name="fecha" Type="datetime" />
+          <Property Name="idUsuario" Type="int" />
+          <Property Name="atendido" Type="bit" />
+          <Property Name="idChecklist" Type="int" />
+          <Property Name="activo" Type="bit" />
         </EntityType>
         <EntityType Name="soluciones">
           <Key>
@@ -132,6 +223,45 @@
           <Property Name="modifico" Type="nvarchar" MaxLength="200" />
           <Property Name="fmodifico" Type="date" />
         </EntityType>
+        <EntityType Name="usuarios">
+          <Key>
+            <PropertyRef Name="usuarioID" />
+          </Key>
+          <Property Name="usuarioID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="usuario" Type="nvarchar" MaxLength="50" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="100" />
+          <Property Name="apellidoPaterno" Type="nvarchar" MaxLength="100" />
+          <Property Name="apellidoMaterno" Type="nvarchar" MaxLength="100" />
+          <Property Name="fechaNacimiento" Type="datetime" />
+          <Property Name="rfc" Type="nvarchar" MaxLength="50" />
+          <Property Name="curp" Type="nvarchar" MaxLength="50" />
+          <Property Name="email" Type="nvarchar" MaxLength="100" />
+          <Property Name="activo" Type="bit" />
+          <Property Name="fechaContratacion" Type="datetime" />
+          <Property Name="idSupervisor" Type="int" />
+          <Property Name="idSucursalBase" Type="int" />
+          <Property Name="telefono" Type="nvarchar" MaxLength="50" />
+          <Property Name="fechaBaja" Type="datetime" />
+          <Property Name="departamento" Type="int" />
+          <Property Name="puesto" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'sime_db.dbo.vw_areas' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_areas">
+          <Key>
+            <PropertyRef Name="areaID" />
+            <PropertyRef Name="nombreSucursal" />
+            <PropertyRef Name="nombreEncargado" />
+          </Key>
+          <Property Name="areaID" Type="int" Nullable="false" />
+          <Property Name="nombreArea" Type="nvarchar" MaxLength="50" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="250" />
+          <Property Name="nombreSucursal" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="nombreEncargado" Type="nvarchar" MaxLength="302" Nullable="false" />
+          <Property Name="activo" Type="bit" />
+          <Property Name="fechaIngreso" Type="datetime" />
+        </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'sime_db.dbo.vw_stock' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="vw_stock">
@@ -159,17 +289,37 @@ warning 6002: The table/view 'sime_db.dbo.vw_stock' does not have a primary key 
           <Property Name="sucursal" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityContainer Name="sime_dbModelStoreContainer">
+          <EntitySet Name="actividades" EntityType="Self.actividades" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="areas" EntityType="Self.areas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="areaStock" EntityType="Self.areaStock" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="categoria" EntityType="Self.categoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="checklist" EntityType="Self.checklist" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="comentarios" EntityType="Self.comentarios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="equipo" EntityType="Self.equipo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="fotos" EntityType="Self.fotos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="incidencias" EntityType="Self.incidencias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="log" EntityType="Self.log" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="requisiciones" EntityType="Self.requisiciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="roles" EntityType="Self.roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="servicios" EntityType="Self.servicios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="soluciones" EntityType="Self.soluciones" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="stock" EntityType="Self.stock" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="subcategoria" EntityType="Self.subcategoria" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sucursales" EntityType="Self.sucursales" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="suspenciones" EntityType="Self.suspenciones" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tareasCheck" EntityType="Self.tareasCheck" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="usuarios" EntityType="Self.usuarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vw_areas" EntityType="Self.vw_areas" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_areas].[areaID] AS [areaID], 
+    [vw_areas].[nombreArea] AS [nombreArea], 
+    [vw_areas].[descripcion] AS [descripcion], 
+    [vw_areas].[nombreSucursal] AS [nombreSucursal], 
+    [vw_areas].[nombreEncargado] AS [nombreEncargado], 
+    [vw_areas].[activo] AS [activo], 
+    [vw_areas].[fechaIngreso] AS [fechaIngreso]
+    FROM [dbo].[vw_areas] AS [vw_areas]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="vw_stock" EntityType="Self.vw_stock" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [vw_stock].[id] AS [id], 
@@ -210,6 +360,16 @@ warning 6002: The table/view 'sime_db.dbo.vw_stock' does not have a primary key 
           <EntitySet Name="vw_stock" EntityType="sime_dbModel.vw_stock" />
           <EntitySet Name="suspenciones" EntityType="sime_dbModel.suspencione" />
           <EntitySet Name="tareasChecks" EntityType="sime_dbModel.tareasCheck" />
+          <EntitySet Name="actividades" EntityType="sime_dbModel.actividade" />
+          <EntitySet Name="areas" EntityType="sime_dbModel.area" />
+          <EntitySet Name="areaStocks" EntityType="sime_dbModel.areaStock" />
+          <EntitySet Name="checklists" EntityType="sime_dbModel.checklist" />
+          <EntitySet Name="logs" EntityType="sime_dbModel.log" />
+          <EntitySet Name="requisiciones" EntityType="sime_dbModel.requisicione" />
+          <EntitySet Name="roles" EntityType="sime_dbModel.role" />
+          <EntitySet Name="usuarios" EntityType="sime_dbModel.usuario" />
+          <EntitySet Name="vw_areas" EntityType="sime_dbModel.vw_areas" />
+          <EntitySet Name="servicios" EntityType="sime_dbModel.servicio" />
         </EntityContainer>
         <EntityType Name="categoria">
           <Key>
@@ -289,11 +449,10 @@ warning 6002: The table/view 'sime_db.dbo.vw_stock' does not have a primary key 
           <Property Name="serializado" Type="Boolean" />
           <Property Name="numSerie" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="descripcion" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="activa" Type="Boolean" />
           <Property Name="fechaAperrtura" Type="DateTime" Precision="0" />
           <Property Name="fechaAtencion" Type="DateTime" Precision="0" />
           <Property Name="fechaClaususa" Type="DateTime" Precision="0" />
-          <Property Name="abierta" Type="Boolean" />
+          <Property Name="estatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="solucione">
           <Key>
@@ -360,6 +519,135 @@ warning 6002: The table/view 'sime_db.dbo.vw_stock' does not have a primary key 
           <Property Name="fcreo" Type="DateTime" Precision="0" />
           <Property Name="modifico" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="fmodifico" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="actividade">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idChecklist" Type="Int32" />
+          <Property Name="idTarea" Type="Int32" />
+          <Property Name="activo" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="area">
+          <Key>
+            <PropertyRef Name="areaID" />
+          </Key>
+          <Property Name="areaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="idSucursal" Type="Int32" />
+          <Property Name="usuarioEncargado" Type="Int32" />
+          <Property Name="activo" Type="Boolean" />
+          <Property Name="fechaIngreso" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="areaStock">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idArea" Type="Int32" />
+          <Property Name="idEquipo" Type="Int32" />
+          <Property Name="cantidad" Type="Int32" />
+          <Property Name="idUsuario" Type="Int32" />
+          <Property Name="fechaUltimoServicio" Type="DateTime" Precision="3" />
+          <Property Name="numeroSerie" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="checklist">
+          <Key>
+            <PropertyRef Name="checkID" />
+          </Key>
+          <Property Name="checkID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idEquipo" Type="Int32" />
+          <Property Name="descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="periodoServicio" Type="Int32" />
+        </EntityType>
+        <EntityType Name="log">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idRecord" Type="Int32" />
+          <Property Name="tabla" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="usuario" Type="Int32" />
+          <Property Name="evento" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="valOld" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="valNew" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fecha" Type="DateTime" Precision="3" />
+          <Property Name="pagina" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="requisicione">
+          <Key>
+            <PropertyRef Name="requisicionID" />
+          </Key>
+          <Property Name="requisicionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idRequisitor" Type="Int32" />
+          <Property Name="idResuelve" Type="Int32" />
+          <Property Name="descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="respuesta" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="estatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="role">
+          <Key>
+            <PropertyRef Name="rolID" />
+          </Key>
+          <Property Name="rolID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rol" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="creo" Type="Int32" />
+          <Property Name="fCreo" Type="DateTime" Precision="3" />
+          <Property Name="modifico" Type="Int32" />
+          <Property Name="fModifico" Type="DateTime" Precision="3" />
+          <Property Name="activo" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="usuarioID" />
+          </Key>
+          <Property Name="usuarioID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="usuario1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="apellidoPaterno" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="apellidoMaterno" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="fechaNacimiento" Type="DateTime" Precision="3" />
+          <Property Name="rfc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="curp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="activo" Type="Boolean" />
+          <Property Name="fechaContratacion" Type="DateTime" Precision="3" />
+          <Property Name="idSupervisor" Type="Int32" />
+          <Property Name="idSucursalBase" Type="Int32" />
+          <Property Name="telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fechaBaja" Type="DateTime" Precision="3" />
+          <Property Name="departamento" Type="Int32" />
+          <Property Name="puesto" Type="Int32" />
+        </EntityType>
+        <EntityType Name="vw_areas">
+          <Key>
+            <PropertyRef Name="areaID" />
+            <PropertyRef Name="nombreSucursal" />
+            <PropertyRef Name="nombreEncargado" />
+          </Key>
+          <Property Name="areaID" Type="Int32" Nullable="false" />
+          <Property Name="nombreArea" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="nombreSucursal" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="nombreEncargado" Type="String" Nullable="false" MaxLength="302" FixedLength="false" Unicode="true" />
+          <Property Name="activo" Type="Boolean" />
+          <Property Name="fechaIngreso" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="servicio">
+          <Key>
+            <PropertyRef Name="servicioID" />
+          </Key>
+          <Property Name="servicioID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idAreaStock" Type="Int32" />
+          <Property Name="fecha" Type="DateTime" Precision="3" />
+          <Property Name="idUsuario" Type="Int32" />
+          <Property Name="atendido" Type="Boolean" />
+          <Property Name="idChecklist" Type="Int32" />
+          <Property Name="activo" Type="Boolean" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -444,11 +732,10 @@ warning 6002: The table/view 'sime_db.dbo.vw_stock' does not have a primary key 
           <EntitySetMapping Name="incidencias">
             <EntityTypeMapping TypeName="sime_dbModel.incidencia">
               <MappingFragment StoreEntitySet="incidencias">
-                <ScalarProperty Name="abierta" ColumnName="abierta" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
                 <ScalarProperty Name="fechaClaususa" ColumnName="fechaClaususa" />
                 <ScalarProperty Name="fechaAtencion" ColumnName="fechaAtencion" />
                 <ScalarProperty Name="fechaAperrtura" ColumnName="fechaAperrtura" />
-                <ScalarProperty Name="activa" ColumnName="activa" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="numSerie" ColumnName="numSerie" />
                 <ScalarProperty Name="serializado" ColumnName="serializado" />
@@ -526,6 +813,143 @@ warning 6002: The table/view 'sime_db.dbo.vw_stock' does not have a primary key 
                 <ScalarProperty Name="activo" ColumnName="activo" />
                 <ScalarProperty Name="nombreTarea" ColumnName="nombreTarea" />
                 <ScalarProperty Name="idTarea" ColumnName="idTarea" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="actividades">
+            <EntityTypeMapping TypeName="sime_dbModel.actividade">
+              <MappingFragment StoreEntitySet="actividades">
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="idTarea" ColumnName="idTarea" />
+                <ScalarProperty Name="idChecklist" ColumnName="idChecklist" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="areas">
+            <EntityTypeMapping TypeName="sime_dbModel.area">
+              <MappingFragment StoreEntitySet="areas">
+                <ScalarProperty Name="fechaIngreso" ColumnName="fechaIngreso" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="usuarioEncargado" ColumnName="usuarioEncargado" />
+                <ScalarProperty Name="idSucursal" ColumnName="idSucursal" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="areaID" ColumnName="areaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="areaStocks">
+            <EntityTypeMapping TypeName="sime_dbModel.areaStock">
+              <MappingFragment StoreEntitySet="areaStock">
+                <ScalarProperty Name="numeroSerie" ColumnName="numeroSerie" />
+                <ScalarProperty Name="fechaUltimoServicio" ColumnName="fechaUltimoServicio" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="idEquipo" ColumnName="idEquipo" />
+                <ScalarProperty Name="idArea" ColumnName="idArea" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="checklists">
+            <EntityTypeMapping TypeName="sime_dbModel.checklist">
+              <MappingFragment StoreEntitySet="checklist">
+                <ScalarProperty Name="periodoServicio" ColumnName="periodoServicio" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="idEquipo" ColumnName="idEquipo" />
+                <ScalarProperty Name="checkID" ColumnName="checkID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="logs">
+            <EntityTypeMapping TypeName="sime_dbModel.log">
+              <MappingFragment StoreEntitySet="log">
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="pagina" ColumnName="pagina" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="valNew" ColumnName="valNew" />
+                <ScalarProperty Name="valOld" ColumnName="valOld" />
+                <ScalarProperty Name="evento" ColumnName="evento" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="tabla" ColumnName="tabla" />
+                <ScalarProperty Name="idRecord" ColumnName="idRecord" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="requisiciones">
+            <EntityTypeMapping TypeName="sime_dbModel.requisicione">
+              <MappingFragment StoreEntitySet="requisiciones">
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="respuesta" ColumnName="respuesta" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="idResuelve" ColumnName="idResuelve" />
+                <ScalarProperty Name="idRequisitor" ColumnName="idRequisitor" />
+                <ScalarProperty Name="requisicionID" ColumnName="requisicionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="roles">
+            <EntityTypeMapping TypeName="sime_dbModel.role">
+              <MappingFragment StoreEntitySet="roles">
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="fModifico" ColumnName="fModifico" />
+                <ScalarProperty Name="modifico" ColumnName="modifico" />
+                <ScalarProperty Name="fCreo" ColumnName="fCreo" />
+                <ScalarProperty Name="creo" ColumnName="creo" />
+                <ScalarProperty Name="rol" ColumnName="rol" />
+                <ScalarProperty Name="rolID" ColumnName="rolID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuarios">
+            <EntityTypeMapping TypeName="sime_dbModel.usuario">
+              <MappingFragment StoreEntitySet="usuarios">
+                <ScalarProperty Name="puesto" ColumnName="puesto" />
+                <ScalarProperty Name="departamento" ColumnName="departamento" />
+                <ScalarProperty Name="fechaBaja" ColumnName="fechaBaja" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="idSucursalBase" ColumnName="idSucursalBase" />
+                <ScalarProperty Name="idSupervisor" ColumnName="idSupervisor" />
+                <ScalarProperty Name="fechaContratacion" ColumnName="fechaContratacion" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="curp" ColumnName="curp" />
+                <ScalarProperty Name="rfc" ColumnName="rfc" />
+                <ScalarProperty Name="fechaNacimiento" ColumnName="fechaNacimiento" />
+                <ScalarProperty Name="apellidoMaterno" ColumnName="apellidoMaterno" />
+                <ScalarProperty Name="apellidoPaterno" ColumnName="apellidoPaterno" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="usuario1" ColumnName="usuario" />
+                <ScalarProperty Name="usuarioID" ColumnName="usuarioID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_areas">
+            <EntityTypeMapping TypeName="sime_dbModel.vw_areas">
+              <MappingFragment StoreEntitySet="vw_areas">
+                <ScalarProperty Name="fechaIngreso" ColumnName="fechaIngreso" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="nombreEncargado" ColumnName="nombreEncargado" />
+                <ScalarProperty Name="nombreSucursal" ColumnName="nombreSucursal" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="nombreArea" ColumnName="nombreArea" />
+                <ScalarProperty Name="areaID" ColumnName="areaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="servicios">
+            <EntityTypeMapping TypeName="sime_dbModel.servicio">
+              <MappingFragment StoreEntitySet="servicios">
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="idChecklist" ColumnName="idChecklist" />
+                <ScalarProperty Name="atendido" ColumnName="atendido" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="idAreaStock" ColumnName="idAreaStock" />
+                <ScalarProperty Name="servicioID" ColumnName="servicioID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

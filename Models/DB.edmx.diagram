@@ -4,19 +4,29 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f2d15d34ddd044d9a00406f00a17f170" Name="Diagram1">
-        <EntityTypeShape EntityType="sime_dbModel.categoria" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="sime_dbModel.equipo" Width="1.5" PointX="8.125" PointY="0.875" />
-        <EntityTypeShape EntityType="sime_dbModel.subcategoria" Width="1.5" PointX="0.75" PointY="3.75" />
-        <EntityTypeShape EntityType="sime_dbModel.stock" Width="1.5" PointX="5.375" PointY="0.75" />
-        <EntityTypeShape EntityType="sime_dbModel.sucursale" Width="2" PointX="5.375" PointY="3.75" />
-        <EntityTypeShape EntityType="sime_dbModel.foto" Width="1.5" PointX="5.375" PointY="6.75" />
-        <EntityTypeShape EntityType="sime_dbModel.incidencia" Width="1.5" PointX="0.75" PointY="6.75" />
-        <EntityTypeShape EntityType="sime_dbModel.solucione" Width="1.5" PointX="2.75" PointY="6.75" />
-        <EntityTypeShape EntityType="sime_dbModel.comentario" Width="1.5" PointX="7.75" PointY="6.75" />
-        <EntityTypeShape EntityType="sime_dbModel.vw_stock" Width="1.5" PointX="7.375" PointY="9.75" />
-        <EntityTypeShape EntityType="sime_dbModel.suspencione" Width="1.5" PointX="9.375" PointY="9.75" />
-        <EntityTypeShape EntityType="sime_dbModel.tareasCheck" Width="1.5" PointX="10.375" PointY="0.75" />
+      <Diagram DiagramId="f2d15d34ddd044d9a00406f00a17f170" Name="Diagram1" ZoomLevel="64">
+        <EntityTypeShape EntityType="sime_dbModel.categoria" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="sime_dbModel.equipo" Width="1.5" PointX="8.125" PointY="0.875" IsExpanded="false" />
+        <EntityTypeShape EntityType="sime_dbModel.subcategoria" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="sime_dbModel.stock" Width="1.5" PointX="5.375" PointY="0.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="sime_dbModel.sucursale" Width="2" PointX="5.375" PointY="3.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="sime_dbModel.foto" Width="1.5" PointX="5.375" PointY="6.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="sime_dbModel.incidencia" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="sime_dbModel.solucione" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="sime_dbModel.comentario" Width="1.5" PointX="7.75" PointY="6.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="sime_dbModel.vw_stock" Width="1.5" PointX="7.375" PointY="9.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="sime_dbModel.suspencione" Width="1.5" PointX="9.375" PointY="9.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="sime_dbModel.tareasCheck" Width="1.5" PointX="10.375" PointY="0.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="sime_dbModel.actividade" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="sime_dbModel.area" Width="1.5" PointX="2.75" PointY="10.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="sime_dbModel.areaStock" Width="1.5" PointX="10.75" PointY="4.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="sime_dbModel.checklist" Width="1.5" PointX="4.75" PointY="10.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="sime_dbModel.log" Width="1.5" PointX="11.75" PointY="8.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="sime_dbModel.requisicione" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="sime_dbModel.role" Width="1.5" PointX="12.75" PointY="3.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="sime_dbModel.usuario" Width="1.5" PointX="9.75" PointY="12.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="sime_dbModel.vw_areas" Width="1.5" PointX="11.75" PointY="12.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="sime_dbModel.servicio" Width="1.5" PointX="0.75" PointY="14.75" IsExpanded="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
