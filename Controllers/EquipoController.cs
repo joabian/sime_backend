@@ -36,6 +36,8 @@ namespace sime.Controllers
             return fnd;
         }
 
+        
+
         // POST api/equipo
         [HttpPost]
         [ActionName("Add")]

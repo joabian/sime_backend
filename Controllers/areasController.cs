@@ -32,6 +32,18 @@ namespace sime.Controllers
 
         }
 
+        // GET api/areas/SelectByEncargadoID/5
+        [HttpGet]
+        [ActionName("SelectByEncargadoID")]
+        public IEnumerable<area> SelectByEncargadoID(int id)
+        {
+            var query = from mysub in myEntity.areas.AsEnumerable()
+                        where mysub.usuarioEncargado == id
+                        select mysub;
+            return query;
+        }
+
+
         // POST api/areas
         [HttpPost]
         [ActionName("Add")]
